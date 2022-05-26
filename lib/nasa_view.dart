@@ -4,6 +4,7 @@ import 'package:trestest/home_view.dart';
 import 'package:trestest/nav_bar.dart';
 import 'package:trestest/results.dart';
 
+import 'calendar_view.dart';
 import 'categories.dart';
 import 'favorites.dart';
 import 'funcs.dart';
@@ -40,7 +41,28 @@ class _NasaViewState extends State<NasaView> {
     setState(() {
       if (page == "Home") {
         pageController.animateToPage(
+          0,
+          duration: duration,
+          curve: curve,
+        );
+      }
+      if (page == "Calendar") {
+        pageController.animateToPage(
           1,
+          duration: duration,
+          curve: curve,
+        );
+      }
+      if (page == "Search") {
+        pageController.animateToPage(
+          2,
+          duration: duration,
+          curve: curve,
+        );
+      }
+      if (page == "Favorits") {
+        pageController.animateToPage(
+          3,
           duration: duration,
           curve: curve,
         );
@@ -53,20 +75,31 @@ class _NasaViewState extends State<NasaView> {
     return Scaffold(
       body: Column(
         children: [
-          PageView(
-            children: [
-              const HomeView(),
-              Column(
-                children: [
-                  Header(nasaLogo: nasaLogo),
-                  const Favorites(),
-                  Categories(onChange: onSearch),
-                  Results(loadedResults: loadedResults),
-                ],
-              )
-            ],
+          Expanded(
+            child: PageView(
+              controller: pageController,
+              scrollDirection: Axis.horizontal,
+              children: [
+                const HomeView(),
+                const CalendarView(),
+                Column(
+                  children: [
+                    Header(nasaLogo: nasaLogo),
+                    const Favorites(),
+                    Categories(onChange: onSearch),
+                    Results(
+                      loadedResults: loadedResults,
+                      searchFor: searchFor,
+                    ),
+                  ],
+                ),
+                Container(
+                  child: const Text("Favorites View"),
+                ),
+              ],
+            ),
           ),
-           CustomBottonNavBar(
+          CustomBottonNavBar(
             onChange: onPageChange,
           ),
         ],
