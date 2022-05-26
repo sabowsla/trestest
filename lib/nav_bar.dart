@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustomBottonNavBar extends StatefulWidget {
-  const CustomBottonNavBar({Key? key}) : super(key: key);
+  final Function? onChange;
+  const CustomBottonNavBar({Key? key, this.onChange}) : super(key: key);
 
   @override
   State<CustomBottonNavBar> createState() => _CustomBottonNavBarState();
@@ -12,6 +13,7 @@ class _CustomBottonNavBarState extends State<CustomBottonNavBar> {
   void onChange(String newRoute) {
     setState(() {
       onRoute = newRoute;
+      widget.onChange!(newRoute);
     });
   }
 

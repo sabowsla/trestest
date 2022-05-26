@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:trestest/favorites.dart';
 
-import 'nasa_view.dart';
+import 'funcs.dart';
+
 
 class Results extends StatefulWidget {
   final String? searchFor;
