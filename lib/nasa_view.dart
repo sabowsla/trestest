@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trestest/favorites_view.dart';
+import 'package:trestest/search_view.dart';
 import 'package:trestest/header.dart';
 import 'package:trestest/home_view.dart';
 import 'package:trestest/nav_bar.dart';
@@ -90,7 +90,7 @@ class _NasaViewState extends State<NasaView> {
               children: [
                 const HomeView(),
                 const CalendarView(),
-                FavoritesView(favorites: favorites),
+                SearchView(favorites: favorites),
                 Column(
                   children: [
                     Header(nasaLogo: nasaLogo),
