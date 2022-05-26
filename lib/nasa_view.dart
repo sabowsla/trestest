@@ -90,6 +90,7 @@ class _NasaViewState extends State<NasaView> {
               children: [
                 const HomeView(),
                 const CalendarView(),
+                FavoritesView(favorites: favorites),
                 Column(
                   children: [
                     Header(nasaLogo: nasaLogo),
@@ -103,7 +104,6 @@ class _NasaViewState extends State<NasaView> {
                     ),
                   ],
                 ),
-                FavoritesView(favorites: favorites),
               ],
             ),
           ),

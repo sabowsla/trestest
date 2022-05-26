@@ -15,7 +15,7 @@ class _FavoritesViewState extends State<FavoritesView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Favorites"),
+        title: const Text("Search For"),
       ),
       body: widget.favorites!.isEmpty
           ? Column(
