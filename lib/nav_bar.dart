@@ -9,7 +9,7 @@ class CustomBottonNavBar extends StatefulWidget {
 }
 
 class _CustomBottonNavBarState extends State<CustomBottonNavBar> {
-  String onRoute = "Favoritos";
+  String onRoute = "Home";
   void onChange(String newRoute) {
     setState(() {
       onRoute = newRoute;

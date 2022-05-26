@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Favorites extends StatefulWidget {
-  const Favorites({Key? key}) : super(key: key);
+  final Function? onFavoriteSave;
+  const Favorites({Key? key, this.onFavoriteSave}) : super(key: key);
 
   @override
   State<Favorites> createState() => _FavoritesState();
@@ -14,8 +15,8 @@ class _FavoritesState extends State<Favorites> {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          Text(
+        children: [
+          const Text(
             "Favorites",
             style: TextStyle(
               color: Colors.black,
@@ -24,6 +25,7 @@ class _FavoritesState extends State<Favorites> {
             ),
           ),
           CustomButton(
+            onTap: widget.onFavoriteSave,
             iconData: Icons.add,
           )
         ],
@@ -35,9 +37,11 @@ class _FavoritesState extends State<Favorites> {
 class CustomButton extends StatelessWidget {
   final iconData;
   final double? size;
+  final Function? onTap;
   const CustomButton({
     this.size,
     this.iconData,
+    this.onTap,
     Key? key,
   }) : super(key: key);
 
@@ -57,7 +61,15 @@ class CustomButton extends StatelessWidget {
           ),
         ],
       ),
-      child: Icon(iconData),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+            borderRadius: BorderRadius.circular(50),
+            onTap: () {
+              onTap!();
+            },
+            child: Icon(iconData)),
+      ),
     );
   }
 }

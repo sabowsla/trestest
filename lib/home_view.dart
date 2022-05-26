@@ -15,52 +15,55 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(
-              width: 500,
-              child: TextFormField(
-                onChanged: (String val) {
-                  int? tamano = int.tryParse(val);
-                  if (tamano != null) {
-                    setState(() {
-                      matriz = generarMatriz(tamano);
-
-                      islas = numeroDeIslas(matriz).toString();
-                    });
-                  }
-                },
-                decoration: const InputDecoration(
-                  hintText: "Ingrese el tamaño de la matriz",
-                  border: OutlineInputBorder(),
+    return Scaffold(
+      appBar: AppBar(title: const Text("Calculador De Islas"),),
+      body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                width: 500,
+                child: TextFormField(
+                  onChanged: (String val) {
+                    int? tamano = int.tryParse(val);
+                    if (tamano != null) {
+                      setState(() {
+                        matriz = generarMatriz(tamano);
+    
+                        islas = numeroDeIslas(matriz).toString();
+                      });
+                    }
+                  },
+                  decoration: const InputDecoration(
+                    hintText: "Ingrese el tamaño de la matriz",
+                    border: OutlineInputBorder(),
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 50),
-              child: SizedBox(
-                width: 500,
-                height: 500,
-                child: matriz.isNotEmpty
-                    ? GridView.count(
-                        crossAxisCount: matriz.length,
-                        children: buildGrid(),
-                      )
-                    : Container(),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 50),
+                child: SizedBox(
+                  width: 500,
+                  height: 500,
+                  child: matriz.isNotEmpty
+                      ? GridView.count(
+                          crossAxisCount: matriz.length,
+                          children: buildGrid(),
+                        )
+                      : Container(),
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 50),
-              child: SizedBox(
-                width: 500,
-                child: Text("Islas Calculadas $islas"),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 50),
+                child: SizedBox(
+                  width: 500,
+                  child: Text("Islas Calculadas $islas"),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      );
+    );
   }
   
   List<Widget> buildGrid() {

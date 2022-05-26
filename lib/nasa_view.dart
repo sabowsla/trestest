@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trestest/favorites_view.dart';
 import 'package:trestest/header.dart';
 import 'package:trestest/home_view.dart';
 import 'package:trestest/nav_bar.dart';
@@ -18,8 +19,9 @@ class NasaView extends StatefulWidget {
 
 class _NasaViewState extends State<NasaView> {
   var nasaLogo = "assets/nasa.png";
-  String searchFor = "Happy Hours";
+  String searchFor = "All";
   List<ResultData> loadedResults = [];
+  List<ResultData> favorites = [];
   @override
   void initState() {
     super.initState();
@@ -28,10 +30,10 @@ class _NasaViewState extends State<NasaView> {
   PageController pageController = PageController(initialPage: 0);
 
   void onSearch(String search) async {
-    loadedResults = await getGifs("Restaurants");
-    print(loadedResults);
+    loadedResults = await getGifs(search + " Restaurants");
+
     setState(() {
-      searchFor = search;
+      searchFor = search + " Restaurants";
     });
   }
 
@@ -60,13 +62,19 @@ class _NasaViewState extends State<NasaView> {
           curve: curve,
         );
       }
-      if (page == "Favorits") {
+      if (page == "Favoritos") {
         pageController.animateToPage(
           3,
           duration: duration,
           curve: curve,
         );
       }
+    });
+  }
+
+  void onFavoriteSave() {
+    setState(() {
+      favorites.addAll(loadedResults);
     });
   }
 
@@ -85,7 +93,9 @@ class _NasaViewState extends State<NasaView> {
                 Column(
                   children: [
                     Header(nasaLogo: nasaLogo),
-                    const Favorites(),
+                    Favorites(
+                      onFavoriteSave: onFavoriteSave,
+                    ),
                     Categories(onChange: onSearch),
                     Results(
                       loadedResults: loadedResults,
@@ -93,9 +103,7 @@ class _NasaViewState extends State<NasaView> {
                     ),
                   ],
                 ),
-                Container(
-                  child: const Text("Favorites View"),
-                ),
+                FavoritesView(favorites: favorites),
               ],
             ),
           ),

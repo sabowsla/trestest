@@ -4,14 +4,13 @@ import 'package:trestest/favorites.dart';
 
 import 'funcs.dart';
 
-
 class Results extends StatefulWidget {
   final String? searchFor;
   final List<ResultData> loadedResults;
 
   const Results({
     Key? key,
-    this.searchFor = "Happy Hours",
+    this.searchFor = "All",
     this.loadedResults = const [],
   }) : super(key: key);
 
@@ -41,9 +40,9 @@ class _ResultsState extends State<Results> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                child: const Text(
-                  "Happy Hours",
-                  style: TextStyle(
+                child: Text(
+                  widget.searchFor!,
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
@@ -88,7 +87,7 @@ class ResultView extends StatelessWidget {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(30),
                       child: Image.network(
-                      resultData!.url!,
+                        resultData!.url!,
                         height: 150,
                         width: 200,
                         fit: BoxFit.cover,
@@ -97,9 +96,9 @@ class ResultView extends StatelessWidget {
                   ],
                 ),
               ),
-               Expanded(
+              Expanded(
                 child: Text(
-              resultData!.title!,
+                  resultData!.title!,
                   style: const TextStyle(
                     fontSize: 25,
                     color: Colors.black,

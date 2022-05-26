@@ -36,11 +36,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     var inputController = TextEditingController();
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: const NasaView(),
+    return const Scaffold(
+    
+      body: NasaView(),
     );
   }
 

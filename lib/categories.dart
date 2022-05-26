@@ -22,6 +22,12 @@ class _CategoriesState extends State<Categories> {
     });
   }
 
+ @override
+ void initState() {
+   super.initState();
+   select("All");
+ }
+
   List<Widget> buildCategories() {
     return categories.map((e) {
       bool isSelected = e == selected;
