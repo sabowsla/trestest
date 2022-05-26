@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:trestest/favorites.dart';
+import 'package:trestest/result_view.dart';
 
+import 'custom_button.dart';
 import 'funcs.dart';
 
 class Results extends StatefulWidget {
@@ -62,54 +63,3 @@ class _ResultsState extends State<Results> {
   }
 }
 
-class ResultView extends StatelessWidget {
-  final ResultData? resultData;
-  const ResultView({Key? key, this.resultData}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        children: [
-          const Align(
-            alignment: Alignment.centerRight,
-            child: Icon(
-              Icons.more_horiz_outlined,
-            ),
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Stack(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(30),
-                      child: Image.network(
-                        resultData!.url!,
-                        height: 150,
-                        width: 200,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Text(
-                  resultData!.title!,
-                  style: const TextStyle(
-                    fontSize: 25,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              )
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}

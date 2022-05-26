@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trestest/funcs.dart';
-import 'package:trestest/results.dart';
+import 'package:trestest/result_view.dart';
 
 class SearchView extends StatefulWidget {
   final List<ResultData>? favorites;
